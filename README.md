@@ -55,6 +55,11 @@ no code changes needed:
 | `product-lemongrass-8.jpg`    | Shop — Lemongrass 8-pack card              |
 | `product-pandan-8.jpg`        | Shop — Pandan 8-pack card                  |
 | `product-variety-12.jpg`      | Shop — Variety pack card                   |
+| `gallery-1.jpg`               | Moments — coast road trip at golden hour   |
+| `gallery-2.jpg`               | Moments — night market with friends        |
+| `gallery-3.jpg`               | Moments — creative studio / moodboard      |
+| `gallery-4.jpg`               | Moments — rooftop dinner, city skyline     |
+| `gallery-5.jpg`               | Moments — sunlit café workspace            |
 
 ## Waitlist
 

@@ -15,7 +15,7 @@
   -------------------------------------------------------- */
   function initPhotoSlots(root) {
     (root || document).querySelectorAll('img[data-photo]').forEach((img) => {
-      const reveal = () => img.closest('.hero-scene, .product-media, .story-photo, .flavor-card-visual')?.classList.add('has-photo');
+      const reveal = () => img.closest('.hero-scene, .product-media, .story-photo, .flavor-card-visual, .moment-tile')?.classList.add('has-photo');
       if (img.complete) {
         // load/error already settled before this script ran
         if (img.naturalWidth > 0) reveal();

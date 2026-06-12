@@ -725,6 +725,66 @@ button { font-family: inherit; cursor: pointer; }
 .story-scene { width: 100%; height: 100%; }
 
 /* ----------------------------------------------------------
+   Moments gallery
+---------------------------------------------------------- */
+.moments { padding: 20px 0 100px; }
+.moments .section-title { margin-bottom: 48px; }
+
+.moments-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 22px;
+}
+.moment-tile {
+  position: relative;
+  grid-column: span 2;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: 0 24px 44px -24px rgba(27,58,45,.4);
+  /* warm placeholder until photography is dropped into assets/img/ */
+  background:
+    radial-gradient(120% 100% at 70% 0%, rgba(247,227,176,.85), rgba(247,227,176,0) 55%),
+    linear-gradient(160deg, #E2CFA4 0%, #C9A86F 60%, #97713F 100%);
+}
+.moment-wide { grid-column: span 3; }
+
+.moment-tile .scene-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .6s ease, transform .8s ease;
+}
+.moment-tile.has-photo .scene-photo { opacity: 1; }
+.moment-tile.has-photo:hover .scene-photo { transform: scale(1.04); }
+
+.moment-tile figcaption {
+  position: absolute;
+  left: 18px;
+  bottom: 14px;
+  z-index: 2;
+  font-family: var(--label);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--cream-100);
+  text-shadow: 0 2px 10px rgba(22,43,30,.55);
+}
+.moment-tile::after {
+  content: '';
+  position: absolute;
+  inset: 55% 0 0 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(22,43,30,0), rgba(22,43,30,.45));
+  pointer-events: none;
+}
+
+/* ----------------------------------------------------------
    FAQ
 ---------------------------------------------------------- */
 .faq { padding: 20px 0 110px; }
@@ -992,6 +1052,8 @@ button { font-family: inherit; cursor: pointer; }
   .hero-scene { height: 480px; }
   .flavor-grid { grid-template-columns: 1fr; }
   .story-grid { grid-template-columns: 1fr; gap: 40px; }
+  .moments-grid { grid-template-columns: 1fr 1fr; }
+  .moment-tile, .moment-wide { grid-column: span 1; }
   .waitlist-grid { grid-template-columns: 1fr; gap: 36px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
@@ -1024,6 +1086,7 @@ button { font-family: inherit; cursor: pointer; }
   .flavor-card-visual { position: absolute; inset: auto 0 0 0; height: 280px; }
   .waitlist-form { flex-direction: column; }
   .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+  .moments-grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
