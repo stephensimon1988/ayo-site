@@ -62,6 +62,9 @@
     color:var(--green);transition:color .2s;
   }
   .main-nav a:hover{color:var(--gold);}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;color:var(--green);}
+  .mobile-nav{display:none;flex-direction:column;background:rgba(244,232,210,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(180,150,90,.2);}
+  .mobile-nav a{padding:14px 48px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--green);}
   .btn{
     display:inline-flex;align-items:center;justify-content:center;
     font-family:var(--sans);font-weight:600;text-transform:uppercase;letter-spacing:.13em;
@@ -252,6 +255,7 @@
   @media(max-width:820px){
     .wrap,.header-inner{padding-left:24px;padding-right:24px;}
     .main-nav{display:none;}
+    .nav-toggle{display:flex;}
     .hero-grid{grid-template-columns:1fr;}
     .hero-left{order:2;padding:40px 24px 48px;}
     .hero-img-wrap{order:1;position:relative;height:360px;}
@@ -289,14 +293,21 @@
 <!-- ===== HEADER ===== -->
 <header class="site-header">
   <div class="header-inner">
-    <a href="#" aria-label="AYÓ home"><img class="logo-green" src="assets/img/logo-green.png" alt="AYÓ" /></a>
+    <a href="index.html" aria-label="AYÓ home"><img class="logo-green" src="assets/img/logo-green.png" alt="AYÓ" /></a>
     <nav class="main-nav">
-      <a href="#story">Our Story</a>
-      <a href="#flavors">The Flavors</a>
-      <a href="#faq">FAQ</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="flavors.html">The Flavors</a>
+      <a href="faq.html">FAQ</a>
     </nav>
     <a href="#waitlist" class="btn btn-gold">Join the Waitlist</a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg></button>
   </div>
+  <nav class="mobile-nav">
+    <a href="our-story.html">Our Story</a>
+    <a href="flavors.html">The Flavors</a>
+    <a href="faq.html">FAQ</a>
+    <a href="#waitlist">Join the Waitlist</a>
+  </nav>
 </header>
 
 <!-- ===== HERO ===== -->
@@ -316,7 +327,7 @@
       </div>
       <div class="hero-cta">
         <a href="#waitlist" class="btn btn-green">Join the Waitlist</a>
-        <a href="#story" class="btn btn-outline">Learn Our Story</a>
+        <a href="our-story.html" class="btn btn-outline">Learn Our Story</a>
       </div>
       <div class="feature-row">
         <div class="feature">
@@ -364,7 +375,7 @@
         <h3>Lemongrass<br/>Black Tea</h3>
         <div class="sub">Calamansi&nbsp;&nbsp;•&nbsp;&nbsp;Honey</div>
         <p class="desc">Bright, citrusy, and smooth with a touch of honey.</p>
-        <a href="#" class="learn">Learn More <svg width="14" height="10" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h19M15 2l6 6-6 6"/></svg></a>
+        <a href="products.html#lemongrass" class="learn">Learn More <svg width="14" height="10" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h19M15 2l6 6-6 6"/></svg></a>
       </div>
     </article>
     <article class="fcard green">
@@ -375,7 +386,7 @@
         <h3>Pandan<br/>Green Tea</h3>
         <div class="sub">Calamansi&nbsp;&nbsp;•&nbsp;&nbsp;Honey</div>
         <p class="desc">Clean, aromatic, and lightly sweet.</p>
-        <a href="#" class="learn">Learn More <svg width="14" height="10" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h19M15 2l6 6-6 6"/></svg></a>
+        <a href="products.html#pandan" class="learn">Learn More <svg width="14" height="10" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h19M15 2l6 6-6 6"/></svg></a>
       </div>
     </article>
   </div>
@@ -391,7 +402,7 @@
       </div>
       <h2>Inspired by the<br/>Philippines.<br/>Crafted in<br/>Los Angeles.</h2>
       <p>AYÓ is a celebration of Filipino culture, connection, and the everyday moments that bring us together.</p>
-      <a href="#" class="story-link">Learn Our Story <svg width="14" height="10" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h19M15 2l6 6-6 6"/></svg></a>
+      <a href="our-story.html" class="story-link">Learn Our Story <svg width="14" height="10" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8h19M15 2l6 6-6 6"/></svg></a>
     </div>
     <div class="story-right">
       <img src="assets/img/story.jpg" alt="A couple enjoying AYÓ tea at an outdoor table" />
@@ -410,7 +421,7 @@
       </div>
     </div>
     <div class="cta-right">
-      <form class="cta-form" onsubmit="return false;">
+      <form class="cta-form">
         <input type="email" placeholder="Enter your email" aria-label="Email address" />
         <button type="submit">Join the Waitlist</button>
       </form>
@@ -426,7 +437,7 @@
 </section>
 
 <!-- ===== FOOTER ===== -->
-<footer id="faq">
+<footer>
   <div class="footer-inner">
     <div class="footer-brand">
       <img class="footer-logo" src="assets/img/logo-gold.png" alt="AYÓ" />
@@ -434,9 +445,9 @@
     </div>
     <div class="footer-col">
       <h4>Explore</h4>
-      <a href="#story">Our Story</a>
-      <a href="#flavors">The Flavors</a>
-      <a href="#faq">FAQ</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="flavors.html">The Flavors</a>
+      <a href="faq.html">FAQ</a>
     </div>
     <div class="footer-col">
       <h4>Connect</h4>
@@ -450,5 +461,6 @@
   </div>
 </footer>
 
+<script src="assets/site.js"></script>
 </body>
 </html>
