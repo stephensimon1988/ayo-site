@@ -1,594 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AYÓ — Filipino-Inspired Tea | A hello in every sip.</title>
-  <meta name="description" content="AYÓ is premium Filipino-inspired ready-to-drink tea crafted with real ingredients and rooted in the Philippines. Batch 001 — Summer 2026." />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AYÓ — A hello in every sip</title>
+<meta name="description" content="AYÓ — Filipino-inspired tea. A hello in every sip. Premium ready-to-drink tea, naturally sweetened with no artificial ingredients. Coming Summer 2026.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F4E8D2;
+    --cream-deep:#E9DBC0;
+    --green:#0E3A29;
+    --green-soft:#16382a;
+    --gold:#C2913F;
+    --ink:#1f2c23;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    color:var(--ink);
+    background:var(--cream-deep);
+    -webkit-font-smoothing:antialiased;
+  }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  /* ---------- Hero page (photo background) ---------- */
+  .page{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    /* Mobile / tablet: cream content panel on top, photo hero band below */
+    background:var(--cream);
+  }
+  /* Vertical product photo shown as a hero band beneath the content on mobile */
+  .hero-photo{
+    flex:1 1 auto;
+    min-height:clamp(300px,46svh,520px);
+    background:var(--cream-deep) url("assets/img/bg-mobile.jpg") center / cover no-repeat;
+  }
 
-  <link rel="stylesheet" href="css/styles.css" />
+  .content{
+    width:100%;
+    max-width:clamp(420px,94vw,720px);
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:clamp(14px,2.4vw,20px);
+    padding:clamp(26px,7vw,52px) clamp(22px,6vw,44px) clamp(28px,6vw,42px);
+  }
+
+  .logo{
+    width:clamp(150px,42vw,210px);
+    height:auto;
+    display:block;
+  }
+
+  .eyebrow{
+    font-size:clamp(.7rem,2.6vw,.82rem);
+    font-weight:600;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  .headline{
+    font-family:"Playfair Display",Georgia,serif;
+    font-weight:800;
+    line-height:1.04;
+    letter-spacing:-.01em;
+    font-size:clamp(2.5rem,11vw,3.4rem);
+  }
+  /* Animated headline: solid deep-green fill with a slow white shimmer wave */
+  .shimmer{
+    color:var(--green);
+    background-color:var(--green);
+  }
+  @supports ((-webkit-background-clip:text) or (background-clip:text)){
+    .shimmer{
+      background-image:
+        linear-gradient(100deg, transparent 38%, rgba(255,255,255,.62) 50%, transparent 62%),
+        linear-gradient(var(--green),var(--green));
+      background-size:230% 100%, 100% 100%;
+      background-position:135% 0, 0 0;
+      background-repeat:no-repeat;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      -webkit-text-fill-color:transparent;
+      animation:shimmer 5s ease-in-out infinite;
+    }
+  }
+  @keyframes shimmer{
+    0%   { background-position:135% 0, 0 0; }
+    55%  { background-position:-35% 0, 0 0; }
+    100% { background-position:-35% 0, 0 0; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .shimmer{ animation:none; }
+  }
+
+  .coming{
+    font-weight:700;
+    font-size:clamp(.78rem,2.8vw,.92rem);
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--green);
+  }
+
+  .lede{
+    max-width:46ch;
+    font-size:clamp(.95rem,2.7vw,1.05rem);
+    line-height:1.6;
+    color:var(--ink);
+  }
+
+  .cta{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    width:100%;
+    max-width:340px;
+    margin-top:4px;
+  }
+
+  .btn{
+    font-family:inherit;
+    font-weight:600;
+    font-size:clamp(.78rem,2.6vw,.86rem);
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    padding:15px 26px;
+    border-radius:999px;
+    border:1.6px solid var(--green);
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
+    transition:transform .15s ease, background-color .2s ease, color .2s ease, box-shadow .2s ease;
+    display:inline-block;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{
+    background:var(--green);
+    color:var(--cream);
+    box-shadow:0 8px 22px rgba(14,58,41,.22);
+  }
+  .btn-primary:hover{ background:var(--green-soft); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--green);
+  }
+  .btn-ghost:hover{ background:rgba(14,58,41,.07); }
+
+  .batch{
+    margin-top:6px;
+    font-size:clamp(.66rem,2.4vw,.74rem);
+    font-weight:600;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  .social{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    margin-top:4px;
+  }
+  .social-icons{ display:flex; gap:16px; }
+  .social-icons a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1.5px solid rgba(14,58,41,.35);
+    color:var(--green);
+    transition:background-color .2s ease, color .2s ease, transform .15s ease, border-color .2s ease;
+  }
+  .social-icons a:hover{
+    background:var(--green);
+    border-color:var(--green);
+    color:var(--cream);
+    transform:translateY(-2px);
+  }
+  .social-icons svg{ width:20px; height:20px; }
+  .social-note{
+    font-size:clamp(.72rem,2.4vw,.8rem);
+    color:var(--ink);
+    opacity:.85;
+  }
+  .social-note b{ color:var(--green); font-weight:600; }
+
+  /* ---------- Desktop / landscape: horizontal photo, content on the left ---------- */
+  @media (min-width:900px) and (min-aspect-ratio:1/1){
+    .page{
+      background:var(--cream-deep) url("assets/img/bg-desktop.jpg") center / cover no-repeat;
+      justify-content:center;
+      align-items:flex-start;
+    }
+    .hero-photo{ display:none; }
+    .content{
+      margin:0;
+      max-width:min(46%,560px);
+      align-items:flex-start;
+      text-align:left;
+      gap:clamp(16px,1.8vw,22px);
+      padding:clamp(40px,6vh,72px) clamp(48px,7vw,96px);
+    }
+    .logo{ width:clamp(170px,15vw,220px); }
+    .headline{ font-size:clamp(3rem,5.2vw,4.4rem); }
+    .lede{ font-size:clamp(1rem,1.4vw,1.12rem); }
+    .cta{ flex-direction:row; max-width:none; flex-wrap:wrap; }
+    .btn{ width:auto; }
+    .social{ align-items:flex-start; }
+  }
+
+  /* ---------- Waitlist modal ---------- */
+  .modal[hidden]{ display:none; }
+  .modal{
+    position:fixed;
+    inset:0;
+    z-index:50;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
+  .modal-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(8,30,20,.92);
+    -webkit-backdrop-filter:blur(4px);
+    backdrop-filter:blur(4px);
+  }
+  .modal-card{
+    position:relative;
+    width:100%;
+    max-width:420px;
+    background:var(--cream);
+    border-radius:18px;
+    padding:clamp(28px,5vw,40px);
+    box-shadow:0 30px 70px rgba(0,0,0,.45);
+    text-align:center;
+    animation:pop .25s ease;
+  }
+  @keyframes pop{ from{ transform:translateY(12px) scale(.97); opacity:0; } to{ transform:none; opacity:1; } }
+  .modal-close{
+    position:absolute;
+    top:14px;
+    right:16px;
+    background:none;
+    border:none;
+    font-size:1.2rem;
+    line-height:1;
+    color:var(--green);
+    cursor:pointer;
+    opacity:.7;
+  }
+  .modal-close:hover{ opacity:1; }
+  .modal-card h2{
+    font-family:"Playfair Display",Georgia,serif;
+    font-weight:700;
+    font-size:clamp(1.6rem,5vw,2rem);
+    color:var(--green);
+    margin-bottom:8px;
+  }
+  .modal-card p{
+    font-size:.92rem;
+    line-height:1.55;
+    color:var(--ink);
+    margin-bottom:18px;
+  }
+  #waitlist-form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  #waitlist-form input{
+    font-family:inherit;
+    font-size:1rem;
+    padding:14px 16px;
+    border-radius:10px;
+    border:1.5px solid rgba(14,58,41,.3);
+    background:#fff;
+    color:var(--ink);
+  }
+  #waitlist-form input:focus{
+    outline:none;
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(14,58,41,.12);
+  }
+  #waitlist-form .btn{ width:100%; }
+  .form-msg{
+    min-height:1.2em;
+    margin-top:6px;
+    margin-bottom:0;
+    font-size:.85rem;
+    font-weight:600;
+  }
+  .form-msg--ok{ color:var(--green); }
+  .form-msg--err{ color:#9b3b2f; }
+</style>
 </head>
 <body>
 
-  <!-- ====================================================== -->
-  <!-- SVG DEFINITIONS (logo, can, glass, leaves, icons)      -->
-  <!-- ====================================================== -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <!-- AYÓ wordmark -->
-      <symbol id="ayo-logo" viewBox="0 0 300 130">
-        <text x="0" y="112" font-family="'Cormorant Garamond', serif" font-weight="700" font-size="120" letter-spacing="2" fill="currentColor">AY</text>
-        <text x="172" y="112" font-family="'Cormorant Garamond', serif" font-weight="700" font-size="120" fill="currentColor">O</text>
-        <path d="M 232 18 L 268 6 L 262 24 L 230 33 Z" fill="currentColor" />
-      </symbol>
+  <div class="page">
+    <main class="content">
+      <img class="logo" src="assets/img/logo.png" alt="AYÓ">
+      <p class="eyebrow">Filipino-Inspired Tea</p>
+      <h1 class="headline"><span class="shimmer">A hello in<br>every sip.</span></h1>
+      <p class="coming">Coming Soon.</p>
+      <p class="lede">Filipino-inspired tea for moments worth savoring. Premium ready-to-drink tea crafted with no artificial ingredients, no preservatives, and naturally sweetened.</p>
 
-      <!-- Sun mark -->
-      <symbol id="sun-mark" viewBox="0 0 48 48">
-        <circle cx="24" cy="24" r="7" fill="currentColor" />
-        <g stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
-          <line x1="24" y1="4"  x2="24" y2="11" />
-          <line x1="24" y1="37" x2="24" y2="44" />
-          <line x1="4"  y1="24" x2="11" y2="24" />
-          <line x1="37" y1="24" x2="44" y2="24" />
-          <line x1="9.9" y1="9.9"   x2="14.8" y2="14.8" />
-          <line x1="33.2" y1="33.2" x2="38.1" y2="38.1" />
-          <line x1="9.9" y1="38.1"  x2="14.8" y2="33.2" />
-          <line x1="33.2" y1="14.8" x2="38.1" y2="9.9" />
-        </g>
-      </symbol>
-
-      <!-- Slim tea can. Body colour set via CSS var --can-color on the <use> wrapper -->
-      <symbol id="tea-can" viewBox="0 0 120 340">
-        <defs>
-          <linearGradient id="can-sheen" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0"    stop-color="#000" stop-opacity=".28" />
-            <stop offset=".18"  stop-color="#fff" stop-opacity=".22" />
-            <stop offset=".34"  stop-color="#fff" stop-opacity="0" />
-            <stop offset=".72"  stop-color="#000" stop-opacity=".10" />
-            <stop offset="1"    stop-color="#000" stop-opacity=".38" />
-          </linearGradient>
-          <linearGradient id="can-lid" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0"   stop-color="#8a8a86" />
-            <stop offset=".5"  stop-color="#d9d9d4" />
-            <stop offset="1"   stop-color="#7e7e7a" />
-          </linearGradient>
-        </defs>
-        <!-- lid -->
-        <path d="M16 22 Q60 12 104 22 L104 30 Q60 38 16 30 Z" fill="url(#can-lid)" />
-        <ellipse cx="60" cy="21" rx="44" ry="8" fill="#c9c9c2" />
-        <ellipse cx="60" cy="21" rx="36" ry="6" fill="#b3b3ac" />
-        <ellipse cx="60" cy="20.4" rx="14" ry="3.4" fill="#dcdcd6" />
-        <!-- body -->
-        <path d="M16 30 Q60 38 104 30 L106 296 Q106 312 96 318 Q60 330 24 318 Q14 312 14 296 Z" fill="var(--can-color, #7A1C1C)" />
-        <path d="M16 30 Q60 38 104 30 L106 296 Q106 312 96 318 Q60 330 24 318 Q14 312 14 296 Z" fill="url(#can-sheen)" />
-        <!-- base rim -->
-        <path d="M22 316 Q60 328 98 316 L98 322 Q60 334 22 322 Z" fill="#00000055" />
-        <!-- condensation -->
-        <g fill="#ffffff" opacity=".35">
-          <circle cx="34" cy="84"  r="1.6" /><circle cx="88" cy="64"  r="1.2" />
-          <circle cx="76" cy="104" r="1.9" /><circle cx="44" cy="142" r="1.1" />
-          <circle cx="92" cy="160" r="1.5" /><circle cx="30" cy="208" r="1.8" />
-          <circle cx="68" cy="238" r="1.2" /><circle cx="86" cy="282" r="1.7" />
-          <circle cx="40" cy="296" r="1.3" /><circle cx="58" cy="70"  r="1.0" />
-        </g>
-        <!-- label text -->
-        <text x="60" y="120" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-weight="700" font-size="40" letter-spacing="2" fill="#D4A84B">AYÓ</text>
-        <g font-family="'Cormorant Garamond', serif" fill="#F0E6CC" text-anchor="middle" style="opacity:var(--label-opacity,1)">
-          <text x="60" y="172" font-size="15" font-weight="600" textLength="86" lengthAdjust="spacingAndGlyphs">LEMONGRASS</text>
-          <text x="60" y="190" font-size="15" font-weight="600" textLength="72" lengthAdjust="spacingAndGlyphs">BLACK TEA</text>
-        </g>
-        <g font-family="Montserrat, sans-serif" fill="#D4A84B" text-anchor="middle" style="opacity:var(--label-opacity,1)">
-          <text x="60" y="210" font-size="8" textLength="84" lengthAdjust="spacingAndGlyphs">CALAMANSI • HONEY</text>
-        </g>
-        <g font-family="'Cormorant Garamond', serif" fill="#F0E6CC" text-anchor="middle" opacity=".85">
-          <text x="60" y="244" font-size="9" font-style="italic" textLength="92" lengthAdjust="spacingAndGlyphs">Inspired by the Philippines.</text>
-          <text x="60" y="256" font-size="9" font-style="italic" textLength="78" lengthAdjust="spacingAndGlyphs">Crafted for the world.</text>
-        </g>
-        <g font-family="Montserrat, sans-serif" fill="#F0E6CC" text-anchor="middle" opacity=".8">
-          <text x="60" y="288" font-size="7" textLength="64" lengthAdjust="spacingAndGlyphs">12 FL OZ (355 mL)</text>
-          <text x="60" y="304" font-size="7" textLength="34" lengthAdjust="spacingAndGlyphs">READY TO</text>
-          <text x="60" y="313" font-size="7" textLength="38" lengthAdjust="spacingAndGlyphs">DRINK TEA</text>
-        </g>
-      </symbol>
-
-      <!-- Iced tea glass -->
-      <symbol id="tea-glass" viewBox="0 0 140 180">
-        <defs>
-          <linearGradient id="tea-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#D88A2B" />
-            <stop offset="1" stop-color="#9C5A14" />
-          </linearGradient>
-        </defs>
-        <path d="M22 14 L30 168 Q70 178 110 168 L118 14 Z" fill="#f7f1e2" opacity=".35" />
-        <path d="M28 42 L34 164 Q70 173 106 164 L112 42 Q70 52 28 42 Z" fill="url(#tea-fill)" opacity=".92" />
-        <!-- ice cubes -->
-        <g fill="#fdf8ec" opacity=".75" stroke="#e8d9b8" stroke-width="1">
-          <path d="M44 50 l24 -6 l8 20 l-24 8 Z" />
-          <path d="M76 44 l22 4 l-4 20 l-22 -4 Z" />
-          <path d="M52 76 l20 4 l-2 18 l-22 -2 Z" />
-          <path d="M80 72 l18 -2 l4 18 l-20 4 Z" />
-        </g>
-        <!-- glass rim + facets -->
-        <path d="M22 14 L30 168 Q70 178 110 168 L118 14" fill="none" stroke="#fdf8ec" stroke-width="3" opacity=".8" />
-        <ellipse cx="70" cy="14" rx="48" ry="8" fill="none" stroke="#fdf8ec" stroke-width="3" opacity=".9" />
-        <g stroke="#fff" stroke-width="1.4" opacity=".35">
-          <line x1="44" y1="20" x2="50" y2="160" />
-          <line x1="96" y1="20" x2="90" y2="160" />
-        </g>
-      </symbol>
-
-      <!-- Calamansi (halved) -->
-      <symbol id="calamansi" viewBox="0 0 120 120">
-        <circle cx="60" cy="60" r="50" fill="#C9D23A" />
-        <circle cx="60" cy="60" r="44" fill="#EFE8A8" />
-        <g fill="#E8D44D">
-          <path d="M60 60 L60 20 A40 40 0 0 1 95 40 Z" />
-          <path d="M60 60 L95 40 A40 40 0 0 1 95 80 Z" />
-          <path d="M60 60 L95 80 A40 40 0 0 1 60 100 Z" />
-          <path d="M60 60 L60 100 A40 40 0 0 1 25 80 Z" />
-          <path d="M60 60 L25 80 A40 40 0 0 1 25 40 Z" />
-          <path d="M60 60 L25 40 A40 40 0 0 1 60 20 Z" />
-        </g>
-        <circle cx="60" cy="60" r="5" fill="#EFE8A8" />
-      </symbol>
-
-      <!-- Palm / pandan frond -->
-      <symbol id="frond" viewBox="0 0 220 220">
-        <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
-          <path d="M20 200 Q90 130 200 30" />
-          <path d="M58 162 Q44 130 46 96"  /><path d="M58 162 Q92 152 118 128" />
-          <path d="M96 124 Q82 92 88 58"   /><path d="M96 124 Q132 116 156 92"  />
-          <path d="M136 86 Q126 56 136 26" /><path d="M136 86 Q168 80 192 60"  />
-        </g>
-      </symbol>
-
-      <!-- Feature icons -->
-      <symbol id="icon-leaf-sprout" viewBox="0 0 48 48">
-        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M24 40 V22" />
-          <path d="M24 26 C24 16 16 12 8 12 C8 22 14 27 24 26 Z" />
-          <path d="M24 22 C24 14 30 10 40 10 C40 18 34 23 24 22 Z" />
-        </g>
-      </symbol>
-      <symbol id="icon-leaf" viewBox="0 0 48 48">
-        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M38 10 C18 10 10 22 10 38 C26 38 38 30 38 10 Z" />
-          <path d="M10 38 C18 28 26 22 34 16" />
-        </g>
-      </symbol>
-      <symbol id="icon-seed" viewBox="0 0 48 48">
-        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M24 42 V26" />
-          <path d="M24 30 C16 30 12 24 12 16 C20 16 24 20 24 28 Z" />
-          <path d="M24 28 C24 20 28 16 36 16 C36 24 32 30 24 30 Z" />
-          <circle cx="24" cy="10" r="4" />
-        </g>
-      </symbol>
-      <symbol id="icon-can-outline" viewBox="0 0 48 48">
-        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="16" y="8" width="16" height="34" rx="4" />
-          <path d="M16 13 H32" /><path d="M16 37 H32" />
-          <path d="M21 4 H27" />
-        </g>
-      </symbol>
-      <symbol id="icon-cart" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 4 H5 L7.5 15.5 H18.5 L21 7 H6" />
-          <circle cx="9" cy="20" r="1.6" /><circle cx="17" cy="20" r="1.6" />
-        </g>
-      </symbol>
-      <symbol id="icon-instagram" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="5" />
-          <circle cx="12" cy="12" r="4" />
-          <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
-        </g>
-      </symbol>
-      <symbol id="icon-tiktok" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M16.6 3c.4 2.2 1.8 3.6 4 3.9v3c-1.5 0-2.9-.5-4-1.3v6.2c0 3.9-2.7 6.2-6 6.2-3.1 0-5.6-2.3-5.6-5.5 0-3.4 3-5.9 6.5-5.4v3.1c-1.7-.5-3.4.6-3.4 2.3 0 1.5 1.2 2.5 2.5 2.5 1.6 0 2.9-1.1 2.9-3.3V3h3.1z" />
-      </symbol>
-      <symbol id="icon-arrow" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 12 H20" /><path d="M14 6 L20 12 L14 18" />
-        </g>
-      </symbol>
-    </defs>
-  </svg>
-
-  <!-- ============================== -->
-  <!-- HEADER                         -->
-  <!-- ============================== -->
-  <header class="site-header" id="site-header">
-    <div class="container header-inner">
-      <a href="#top" class="brand" aria-label="AYÓ home">
-        <svg class="brand-logo" viewBox="0 0 300 130"><use href="#ayo-logo" /></svg>
-      </a>
-      <nav class="main-nav" aria-label="Primary">
-        <a href="#story" class="nav-link">Our Story</a>
-        <a href="#flavors" class="nav-link">The Flavors</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-      </nav>
-      <div class="header-actions">
-        <a href="#waitlist" class="btn btn-gold btn-sm" data-magnetic>Join the Waitlist</a>
-        <button class="cart-toggle" id="cart-toggle" aria-label="Open cart">
-          <svg class="icon"><use href="#icon-cart" /></svg>
-          <span class="cart-count" id="cart-count" hidden>0</span>
-        </button>
-        <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main id="top">
-
-    <!-- ============================== -->
-    <!-- HERO                           -->
-    <!-- ============================== -->
-    <section class="hero" id="hero">
-      <div class="hero-backdrop" aria-hidden="true">
-        <svg class="frond frond-1" viewBox="0 0 220 220"><use href="#frond" /></svg>
-        <svg class="frond frond-2" viewBox="0 0 220 220"><use href="#frond" /></svg>
-        <svg class="frond frond-3" viewBox="0 0 220 220"><use href="#frond" /></svg>
+      <div class="cta">
+        <button class="btn btn-primary" id="open-waitlist" type="button">Join the Waitlist</button>
+        <a class="btn btn-ghost" href="https://instagram.com/drinkayo" target="_blank" rel="noopener">Follow @drinkAYO</a>
       </div>
 
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow" data-reveal>
-            <svg class="eyebrow-sun" viewBox="0 0 48 48"><use href="#sun-mark" /></svg>
-            Filipino-Inspired Tea
-          </p>
-          <h1 class="hero-title" data-reveal>A hello in<br />every sip.</h1>
-          <p class="coming-soon" data-reveal>Coming Soon.</p>
-          <div class="gold-rule" data-reveal><span class="gold-rule-diamond"></span></div>
-          <p class="hero-lede" data-reveal>Filipino-inspired tea for moments worth savoring.</p>
-          <p class="hero-sub" data-reveal>Premium ready-to-drink tea crafted with real ingredients and rooted in the Philippines.</p>
-          <div class="hero-ctas" data-reveal>
-            <a href="#waitlist" class="btn btn-dark" data-magnetic>Join the Waitlist</a>
-            <a href="#story" class="btn btn-outline" data-magnetic>Learn Our Story</a>
-          </div>
+      <p class="batch">Batch 001 • Summer 2026</p>
 
-          <ul class="feature-badges" data-reveal>
-            <li class="feature-badge">
-              <span class="feature-icon"><svg><use href="#icon-leaf-sprout" /></svg></span>
-              <span class="feature-label">Real<br />Ingredients</span>
-            </li>
-            <li class="feature-badge">
-              <span class="feature-icon"><svg><use href="#icon-leaf" /></svg></span>
-              <span class="feature-label">No Artificial<br />Ingredients</span>
-            </li>
-            <li class="feature-badge">
-              <span class="feature-icon"><svg><use href="#icon-seed" /></svg></span>
-              <span class="feature-label">Non-GMO</span>
-            </li>
-            <li class="feature-badge">
-              <span class="feature-icon"><svg><use href="#icon-can-outline" /></svg></span>
-              <span class="feature-label">Ready-to-Drink<br />Tea</span>
-            </li>
-          </ul>
-
-          <div class="batch-pill" data-reveal>
-            <span class="dot"></span> Batch 001 <span class="dot"></span> Summer 2026 <span class="dot"></span>
-          </div>
-        </div>
-
-        <div class="hero-visual" aria-hidden="true">
-          <div class="hero-scene" id="hero-scene">
-            <img class="scene-photo" data-photo src="assets/img/hero-cans.jpg" alt="AYÓ Lemongrass Black Tea and Pandan Green Tea cans on a stone plinth" />
-            <div class="pedestal"></div>
-            <div class="can-wrap can-red" data-can-float>
-              <svg class="can-svg" viewBox="0 0 120 340"><use href="#tea-can" /></svg>
-            </div>
-            <div class="can-wrap can-green" data-can-float>
-              <svg class="can-svg can-svg-green" viewBox="0 0 120 340"><use href="#tea-can" /></svg>
-              <span class="can-relabel can-relabel-1">PANDAN</span>
-              <span class="can-relabel can-relabel-2">GREEN TEA</span>
-              <span class="can-relabel can-relabel-3">CALAMANSI&nbsp;•&nbsp;HONEY</span>
-            </div>
-            <div class="glass-wrap">
-              <svg class="glass-svg" viewBox="0 0 140 180"><use href="#tea-glass" /></svg>
-            </div>
-            <div class="fruit-wrap">
-              <svg class="calamansi-svg" viewBox="0 0 120 120"><use href="#calamansi" /></svg>
-              <span class="calamansi-whole"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================== -->
-    <!-- FLAVORS                        -->
-    <!-- ============================== -->
-    <section class="flavors" id="flavors">
-      <div class="container">
-        <p class="section-label center" data-reveal>Two Flavors. One Point of View.</p>
-
-        <div class="flavor-grid">
-          <!-- Lemongrass Black Tea -->
-          <article class="flavor-card flavor-red" data-tilt data-reveal>
-            <div class="flavor-card-copy">
-              <p class="flavor-coming">Coming Soon</p>
-              <h3 class="flavor-name">Lemongrass<br />Black Tea</h3>
-              <p class="flavor-notes">Calamansi <span class="note-dot">•</span> Honey</p>
-              <p class="flavor-desc">Bright, citrusy, and smooth with a touch of honey.</p>
-              <a href="#shop" class="btn btn-card" data-magnetic>
-                Learn More <svg class="icon"><use href="#icon-arrow" /></svg>
-              </a>
-            </div>
-            <div class="flavor-card-visual">
-              <img class="scene-photo" data-photo src="assets/img/flavor-lemongrass.jpg" alt="AYÓ Lemongrass Black Tea can with iced tea, lemongrass, and calamansi" />
-              <div class="card-can" data-can-float aria-hidden="true">
-                <svg class="can-svg" viewBox="0 0 120 340"><use href="#tea-can" /></svg>
-              </div>
-              <svg class="card-glass" viewBox="0 0 140 180" aria-hidden="true"><use href="#tea-glass" /></svg>
-              <svg class="card-fruit" viewBox="0 0 120 120" aria-hidden="true"><use href="#calamansi" /></svg>
-              <svg class="card-frond" viewBox="0 0 220 220" style="color:#5a1414" aria-hidden="true"><use href="#frond" /></svg>
-            </div>
-          </article>
-
-          <!-- Pandan Green Tea -->
-          <article class="flavor-card flavor-green" data-tilt data-reveal>
-            <div class="flavor-card-copy">
-              <p class="flavor-coming">Coming Soon</p>
-              <h3 class="flavor-name">Pandan<br />Green Tea</h3>
-              <p class="flavor-notes">Calamansi <span class="note-dot">•</span> Honey</p>
-              <p class="flavor-desc">Clean, aromatic, and lightly sweet.</p>
-              <a href="#shop" class="btn btn-card" data-magnetic>
-                Learn More <svg class="icon"><use href="#icon-arrow" /></svg>
-              </a>
-            </div>
-            <div class="flavor-card-visual">
-              <img class="scene-photo" data-photo src="assets/img/flavor-pandan.jpg" alt="AYÓ Pandan Green Tea can with iced tea and palm leaves" />
-              <div class="card-can" data-can-float aria-hidden="true">
-                <svg class="can-svg can-svg-green" viewBox="0 0 120 340"><use href="#tea-can" /></svg>
-                <span class="can-relabel can-relabel-1">PANDAN</span>
-                <span class="can-relabel can-relabel-2">GREEN TEA</span>
-                <span class="can-relabel can-relabel-3">PANDAN</span>
-              </div>
-              <svg class="card-glass" viewBox="0 0 140 180" aria-hidden="true"><use href="#tea-glass" /></svg>
-              <svg class="card-fruit" viewBox="0 0 120 120" aria-hidden="true"><use href="#calamansi" /></svg>
-              <svg class="card-frond" viewBox="0 0 220 220" style="color:#143521" aria-hidden="true"><use href="#frond" /></svg>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================== -->
-    <!-- SHOP                           -->
-    <!-- ============================== -->
-    <section class="shop" id="shop">
-      <div class="container">
-        <p class="section-label center" data-reveal>The Shop</p>
-        <h2 class="section-title center" data-reveal>Reserve Batch 001.</h2>
-        <p class="shop-sub center" data-reveal>Pre-order limited quantities of our first run. Powered by Shopify — secure checkout, shipped from Los Angeles.</p>
-        <div class="product-grid" id="product-grid" aria-live="polite">
-          <!-- Products are rendered by js/shop.js -->
-        </div>
-        <p class="shop-note" id="shop-note" hidden></p>
-      </div>
-    </section>
-
-    <!-- ============================== -->
-    <!-- STORY                          -->
-    <!-- ============================== -->
-    <section class="story" id="story">
-      <div class="container story-grid">
-        <div class="story-copy">
-          <p class="section-label gold" data-reveal>Our Story</p>
-          <h2 class="story-title" data-reveal>Inspired by the<br />Philippines.<br />Crafted in<br />Los&nbsp;Angeles.</h2>
-          <p class="story-body" data-reveal>AYÓ is a celebration of Filipino culture, connection, and the everyday moments that bring us together.</p>
-          <a href="#faq" class="link-arrow" data-reveal>
-            Learn Our Story <svg class="icon"><use href="#icon-arrow" /></svg>
+      <div class="social">
+        <div class="social-icons">
+          <a href="https://instagram.com/drinkayo" target="_blank" rel="noopener" aria-label="AYÓ on Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2.5" y="2.5" width="19" height="19" rx="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="4.3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="17.4" cy="6.6" r="1.25" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="https://www.tiktok.com/@drinkayo" target="_blank" rel="noopener" aria-label="AYÓ on TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+              <path d="M16.6 3c.28 2.05 1.43 3.28 3.4 3.41v2.37c-1.14.11-2.14-.26-3.31-.96v6.11c0 3.07-2.23 5.66-5.34 5.66-3.01 0-5.45-2.44-5.45-5.45 0-3.16 2.66-5.62 5.81-5.2v2.49c-.36-.11-.74-.17-1.13-.17-1.58 0-2.86 1.28-2.86 2.86s1.28 2.86 2.86 2.86 2.86-1.28 2.86-2.86V3h3.16z"/>
+            </svg>
           </a>
         </div>
-        <div class="story-visual" data-reveal>
-          <div class="story-photo" data-parallax>
-            <img class="scene-photo" data-photo src="assets/img/story-lifestyle.jpg" alt="Two friends sharing AYÓ tea at a woven outdoor table at golden hour" />
-            <svg class="story-scene" viewBox="0 0 760 560" preserveAspectRatio="xMidYMid slice">
-              <defs>
-                <linearGradient id="story-sky" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#E8C98A" />
-                  <stop offset=".55" stop-color="#C99B5B" />
-                  <stop offset="1" stop-color="#8A6437" />
-                </linearGradient>
-                <radialGradient id="story-glow" cx=".7" cy=".25" r=".6">
-                  <stop offset="0" stop-color="#F7E3B0" stop-opacity=".9" />
-                  <stop offset="1" stop-color="#F7E3B0" stop-opacity="0" />
-                </radialGradient>
-              </defs>
-              <rect width="760" height="560" fill="url(#story-sky)" />
-              <rect width="760" height="560" fill="url(#story-glow)" />
-              <g opacity=".5" color="#5d4a26">
-                <use href="#frond" x="40" y="20" width="260" height="260" />
-                <use href="#frond" x="500" y="-30" width="300" height="300" transform="scale(-1,1) translate(-1300,0)" />
-              </g>
-              <!-- table -->
-              <ellipse cx="380" cy="470" rx="330" ry="80" fill="#A9824E" />
-              <ellipse cx="380" cy="458" rx="330" ry="74" fill="#C09A60" />
-              <!-- cans on table -->
-              <g transform="translate(250 290) scale(.42)">
-                <use href="#tea-can" width="120" height="340" style="--can-color:#7A1C1C" />
-              </g>
-              <g transform="translate(440 282) scale(.45)">
-                <use href="#tea-can" width="120" height="340" style="--can-color:#1E4A30" />
-              </g>
-              <g transform="translate(330 330) scale(.9)">
-                <use href="#tea-glass" width="140" height="180" />
-              </g>
-              <g transform="translate(520 400) scale(.55)">
-                <use href="#calamansi" width="120" height="120" />
-              </g>
-              <ellipse cx="200" cy="440" rx="46" ry="14" fill="#7a5a30" />
-              <ellipse cx="560" cy="452" rx="40" ry="12" fill="#7a5a30" />
-            </svg>
-          </div>
-        </div>
+        <p class="social-note">Follow the launch on Instagram and TikTok: <b>@drinkAYO</b></p>
       </div>
-    </section>
+    </main>
+    <div class="hero-photo" aria-hidden="true"></div>
+  </div>
 
-    <!-- ============================== -->
-    <!-- MOMENTS (lifestyle gallery)    -->
-    <!-- ============================== -->
-    <section class="moments" id="moments">
-      <div class="container">
-        <p class="section-label center" data-reveal>Moments Worth Savoring</p>
-        <h2 class="section-title center" data-reveal>Wherever the day takes you.</h2>
-      </div>
-      <div class="container moments-grid">
-        <figure class="moment-tile moment-wide" data-reveal>
-          <img class="scene-photo" data-photo src="assets/img/gallery-1.jpg" alt="Friends sharing AYÓ on a coastal road trip at golden hour" />
-          <figcaption>Golden hour, coast road</figcaption>
-        </figure>
-        <figure class="moment-tile moment-wide" data-reveal>
-          <img class="scene-photo" data-photo src="assets/img/gallery-2.jpg" alt="Friends with AYÓ cans at a night market" />
-          <figcaption>Night market, shared plates</figcaption>
-        </figure>
-        <figure class="moment-tile" data-reveal>
-          <img class="scene-photo" data-photo src="assets/img/gallery-3.jpg" alt="Creative team with AYÓ cans around a moodboard table" />
-          <figcaption>Good ideas over tea</figcaption>
-        </figure>
-        <figure class="moment-tile" data-reveal>
-          <img class="scene-photo" data-photo src="assets/img/gallery-4.jpg" alt="Rooftop dinner with AYÓ against the city skyline" />
-          <figcaption>Rooftop salo-salo</figcaption>
-        </figure>
-        <figure class="moment-tile" data-reveal>
-          <img class="scene-photo" data-photo src="assets/img/gallery-5.jpg" alt="Friends sharing AYÓ in a sunlit café workspace" />
-          <figcaption>Sunlit afternoons</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ============================== -->
-    <!-- FAQ                            -->
-    <!-- ============================== -->
-    <section class="faq" id="faq">
-      <div class="container faq-inner">
-        <p class="section-label center" data-reveal>FAQ</p>
-        <h2 class="section-title center" data-reveal>Good questions, friend.</h2>
-        <div class="faq-list" data-reveal>
-          <details class="faq-item">
-            <summary>What does “AYÓ” mean?</summary>
-            <p>AYÓ is a warm Visayan greeting — the hello you call out when arriving at a friend’s home. Every can is meant to carry that same spirit of welcome.</p>
-          </details>
-          <details class="faq-item">
-            <summary>When does Batch 001 launch?</summary>
-            <p>Summer 2026, in limited quantities. Waitlist members get early access before the public release.</p>
-          </details>
-          <details class="faq-item">
-            <summary>What’s inside the cans?</summary>
-            <p>Real brewed tea, real fruit and botanicals — calamansi, lemongrass, pandan, and honey. Naturally sweetened, no artificial ingredients, non-GMO.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Where do you ship?</summary>
-            <p>Batch 001 ships anywhere in the continental United States from our home base in Los Angeles.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================== -->
-    <!-- WAITLIST CTA                   -->
-    <!-- ============================== -->
-    <section class="waitlist" id="waitlist">
-      <div class="waitlist-backdrop" aria-hidden="true">
-        <svg class="frond frond-w1" viewBox="0 0 220 220" style="color:#23402f"><use href="#frond" /></svg>
-        <svg class="frond frond-w2" viewBox="0 0 220 220" style="color:#23402f"><use href="#frond" /></svg>
-      </div>
-      <div class="container waitlist-grid">
-        <div class="waitlist-left">
-          <svg class="waitlist-sun" viewBox="0 0 48 48" data-spin aria-hidden="true"><use href="#sun-mark" /></svg>
-          <div>
-            <h2 class="waitlist-title" data-reveal>Be First To Try Batch&nbsp;001.</h2>
-            <div class="gold-rule small" data-reveal><span class="gold-rule-diamond"></span></div>
-            <p class="waitlist-sub" data-reveal>Limited quantities.&ensp;Early access.&ensp;Launch updates.</p>
-          </div>
-        </div>
-        <div class="waitlist-right" data-reveal>
-          <form class="waitlist-form" id="waitlist-form" novalidate>
-            <label class="visually-hidden" for="waitlist-email">Email address</label>
-            <input type="email" id="waitlist-email" name="email" placeholder="Enter your email" required autocomplete="email" />
-            <button type="submit" class="btn btn-gold" data-magnetic>Join the Waitlist</button>
-          </form>
-          <p class="waitlist-confirm" id="waitlist-confirm" hidden>Salamat! You’re on the list. ✦</p>
-          <p class="waitlist-social-note">Follow us for updates, behind-the-scenes, and more.</p>
-          <div class="social-row">
-            <a href="https://instagram.com/drinkAYO" target="_blank" rel="noopener" class="social-link">
-              <svg class="icon"><use href="#icon-instagram" /></svg> @drinkAYO
-            </a>
-            <a href="https://tiktok.com/@drinkAYO" target="_blank" rel="noopener" class="social-link">
-              <svg class="icon"><use href="#icon-tiktok" /></svg> @drinkAYO
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================== -->
-    <!-- FOOTER                         -->
-    <!-- ============================== -->
-    <footer class="site-footer">
-      <div class="container footer-grid">
-        <div class="footer-brand">
-          <svg class="footer-logo" viewBox="0 0 300 130"><use href="#ayo-logo" /></svg>
-          <p class="footer-tag">Filipino-inspired tea.<br />for moments worth savoring.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <a href="#story">Our Story</a>
-          <a href="#flavors">The Flavors</a>
-          <a href="#faq">FAQ</a>
-        </div>
-        <div class="footer-col">
-          <h4>Connect</h4>
-          <a href="https://instagram.com/drinkAYO" target="_blank" rel="noopener"><svg class="icon"><use href="#icon-instagram" /></svg> @drinkAYO</a>
-          <a href="https://tiktok.com/@drinkAYO" target="_blank" rel="noopener"><svg class="icon"><use href="#icon-tiktok" /></svg> @drinkAYO</a>
-        </div>
-        <div class="footer-col footer-legal">
-          <p>© 2026 AYÓ Tea &amp; Co.<br />All rights reserved.</p>
-          <p class="footer-parent">A brand by Simon Tanaka Beverages</p>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <!-- ============================== -->
-  <!-- CART DRAWER                    -->
-  <!-- ============================== -->
-  <div class="cart-overlay" id="cart-overlay" hidden></div>
-  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart" aria-hidden="true">
-    <div class="cart-head">
-      <h3>Your Cart</h3>
-      <button class="cart-close" id="cart-close" aria-label="Close cart">×</button>
+  <!-- Waitlist modal -->
+  <div class="modal" id="waitlist-modal" hidden>
+    <div class="modal-overlay" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" data-close type="button" aria-label="Close">&#10005;</button>
+      <h2 id="modal-title">Join the waitlist</h2>
+      <p>Be first to know when AYÓ launches. Batch 001 drops Summer 2026 — we'll send you a hello the moment it's ready.</p>
+      <form id="waitlist-form" novalidate>
+        <input id="waitlist-email" type="email" name="email" required placeholder="you@email.com" autocomplete="email" aria-label="Email address">
+        <button class="btn btn-primary" type="submit">Notify me</button>
+      </form>
+      <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
     </div>
-    <div class="cart-items" id="cart-items">
-      <p class="cart-empty">Your cart is empty — for now.</p>
-    </div>
-    <div class="cart-foot">
-      <div class="cart-subtotal">
-        <span>Subtotal</span>
-        <strong id="cart-subtotal">$0.00</strong>
-      </div>
-      <p class="cart-shipnote">Shipping &amp; taxes calculated at checkout.</p>
-      <button class="btn btn-gold btn-block" id="cart-checkout">Checkout</button>
-    </div>
-  </aside>
+  </div>
 
-  <!-- Shopify JS Buy SDK -->
-  <script src="https://sdks.shopifycdn.com/js-buy-sdk/v2/latest/index.umd.min.js"></script>
-  <!-- GSAP -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
-  <script src="js/shopify-config.js"></script>
-  <script src="js/shop.js"></script>
-  <script src="js/main.js"></script>
+  <script src="assets/site.js"></script>
 </body>
 </html>
