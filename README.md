@@ -1,6 +1,6 @@
 # AYÓ — Filipino-Inspired Tea
 
-Pre-launch marketing site for AYÓ — a static, multi-page site (no build step).
+Single-page "coming soon" landing for AYÓ — a static site (no build step).
 Recreated from the Claude Design handoff.
 
 ## Run locally
@@ -15,42 +15,27 @@ python3 -m http.server 8000
 
 Then open http://localhost:8000.
 
-## Pages
+## How it works
+
+The page is a single full-bleed composite artwork with clickable CTA hotspots
+laid over the buttons in the image:
 
 ```
-index.html        Home — hero, flavor cards, story teaser, waitlist CTA
-our-story.html    Our Story — origin, values, journey timeline, gallery
-flavors.html      The Flavors — both teas, comparison table, "made for moments"
-products.html     The Teas — per-flavor detail (ingredients, specs, pairings)
-faq.html          FAQ — searchable accordion + contact band
-```
-
-## Structure
-
-```
-assets/site.css   Shared design system for subpages (header, hero, sections, CTA, footer)
-assets/site.js    Shared interactions (mobile nav, scroll-reveal, FAQ accordion, form feedback)
-assets/img/       Brand photography and logos
+index.html                          The landing page (inline CSS, no JS)
+assets/img/AYO_PL_Horizontal_01.jpg Desktop / landscape artwork (1672×941)
+assets/img/AYO_PL_Vertical.jpg      Mobile / portrait artwork (941×1672)
 assets/favicon.svg
 ```
 
-`index.html` keeps its own inline CSS for the bespoke split-hero layout; the
-subpages share `assets/site.css` + `assets/site.js`. All pages use the same
-palette and the Playfair Display + Montserrat web fonts.
+A media query swaps the horizontal artwork for the vertical one below a 1:1
+aspect ratio, and each `.frame` keeps the artwork's exact aspect ratio while
+fitting the viewport. The hotspots are percentage-positioned `<a>` overlays
+("Join the waitlist" → `#waitlist`, "Follow @drinkAYO" → Instagram).
 
-## Assets
+## Previous version
 
-Source images were resized/compressed for the web (photos → progressive JPG,
-logos → PNG with transparency). They live in `assets/img/`: brand logos
-(`logo-green`, `logo-gold`), product/hero shots (`hero`, `card-lemongrass`,
-`card-pandan`, `story`, `couple-night`, `moodboard`), and lifestyle gallery
-photos (`group-*`).
-
-## Waitlist
-
-The CTA email forms are static placeholders — `assets/site.js` shows a
-confirmation state on submit but does not persist anything. Wire them to your
-email provider (Klaviyo, Mailchimp, Shopify customer API) when ready.
+The earlier multi-page site (Home, Our Story, Flavors, Products, FAQ with a
+shared design system) is archived in `business-mode.zip` at the repo root.
 
 ## Deploy
 
