@@ -33,29 +33,17 @@
     min-height:100svh;
     display:flex;
     flex-direction:column;
-    justify-content:flex-start;
-    align-items:stretch;
-    padding:clamp(26px,7vw,52px) clamp(22px,6vw,44px);
-    /* Mobile / tablet: vertical photo, content sits up top */
-    background:var(--cream-deep) url("assets/img/bg-mobile.jpg") center top / cover no-repeat;
+    /* Mobile / tablet: cream content panel on top, photo hero band below */
+    background:var(--cream);
   }
-  /* Soft cream wash behind the top content so copy stays legible over the photo */
-  .page::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(180deg,
-      rgba(244,232,210,.94) 0%,
-      rgba(244,232,210,.78) 26%,
-      rgba(244,232,210,.30) 46%,
-      rgba(244,232,210,0) 62%);
-    z-index:1;
-    pointer-events:none;
+  /* Vertical product photo shown as a hero band beneath the content on mobile */
+  .hero-photo{
+    flex:1 1 auto;
+    min-height:clamp(300px,46svh,520px);
+    background:var(--cream-deep) url("assets/img/bg-mobile.jpg") center / cover no-repeat;
   }
 
   .content{
-    position:relative;
-    z-index:2;
     width:100%;
     max-width:clamp(420px,94vw,720px);
     margin:0 auto;
@@ -64,6 +52,7 @@
     align-items:center;
     text-align:center;
     gap:clamp(14px,2.4vw,20px);
+    padding:clamp(26px,7vw,52px) clamp(22px,6vw,44px) clamp(28px,6vw,42px);
   }
 
   .logo{
@@ -213,18 +202,18 @@
   /* ---------- Desktop / landscape: horizontal photo, content on the left ---------- */
   @media (min-width:900px) and (min-aspect-ratio:1/1){
     .page{
-      background-image:url("assets/img/bg-desktop.jpg");
+      background:var(--cream-deep) url("assets/img/bg-desktop.jpg") center / cover no-repeat;
       justify-content:center;
       align-items:flex-start;
-      padding-left:clamp(48px,7vw,96px);
     }
-    .page::before{ display:none; }
+    .hero-photo{ display:none; }
     .content{
       margin:0;
       max-width:min(46%,560px);
       align-items:flex-start;
       text-align:left;
       gap:clamp(16px,1.8vw,22px);
+      padding:clamp(40px,6vh,72px) clamp(48px,7vw,96px);
     }
     .logo{ width:clamp(170px,15vw,220px); }
     .headline{ font-size:clamp(3rem,5.2vw,4.4rem); }
@@ -356,6 +345,7 @@
         <p class="social-note">Follow the launch on Instagram and TikTok: <b>@drinkAYO</b></p>
       </div>
     </main>
+    <div class="hero-photo" aria-hidden="true"></div>
   </div>
 
   <!-- Waitlist modal -->
