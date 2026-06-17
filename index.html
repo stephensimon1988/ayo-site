@@ -4,76 +4,375 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AYÓ — A hello in every sip</title>
-<meta name="description" content="AYÓ — Filipino-inspired tea. A hello in every sip. Coming soon.">
+<meta name="description" content="AYÓ — Filipino-inspired tea. A hello in every sip. Premium ready-to-drink tea, naturally sweetened with no artificial ingredients. Coming Summer 2026.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
+  :root{
+    --cream:#F4E8D2;
+    --cream-deep:#E9DBC0;
+    --green:#0E3A29;
+    --green-soft:#16382a;
+    --gold:#C2913F;
+    --ink:#1f2c23;
+  }
   *{ margin:0; padding:0; box-sizing:border-box; }
-  html, body{ height:100%; }
+  html{ scroll-behavior:smooth; }
   body{
-    background:#c8b99c;
+    font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    color:var(--ink);
+    background:var(--cream-deep);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Hero page (photo background) ---------- */
+  .page{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:stretch;
+    padding:clamp(26px,7vw,52px) clamp(22px,6vw,44px);
+    /* Mobile / tablet: vertical photo, content sits up top */
+    background:var(--cream-deep) url("assets/img/bg-mobile.jpg") center top / cover no-repeat;
+  }
+  /* Soft cream wash behind the top content so copy stays legible over the photo */
+  .page::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,
+      rgba(244,232,210,.94) 0%,
+      rgba(244,232,210,.78) 26%,
+      rgba(244,232,210,.30) 46%,
+      rgba(244,232,210,0) 62%);
+    z-index:1;
+    pointer-events:none;
+  }
+
+  .content{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:clamp(420px,94vw,720px);
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:clamp(14px,2.4vw,20px);
+  }
+
+  .logo{
+    width:clamp(150px,42vw,210px);
+    height:auto;
+    display:block;
+  }
+
+  .eyebrow{
+    font-size:clamp(.7rem,2.6vw,.82rem);
+    font-weight:600;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  .headline{
+    font-family:"Playfair Display",Georgia,serif;
+    font-weight:800;
+    line-height:1.04;
+    letter-spacing:-.01em;
+    font-size:clamp(2.5rem,11vw,3.4rem);
+  }
+  /* Animated headline: solid deep-green fill with a slow white shimmer wave */
+  .shimmer{
+    color:var(--green);
+    background-color:var(--green);
+  }
+  @supports ((-webkit-background-clip:text) or (background-clip:text)){
+    .shimmer{
+      background-image:
+        linear-gradient(100deg, transparent 38%, rgba(255,255,255,.62) 50%, transparent 62%),
+        linear-gradient(var(--green),var(--green));
+      background-size:230% 100%, 100% 100%;
+      background-position:135% 0, 0 0;
+      background-repeat:no-repeat;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      -webkit-text-fill-color:transparent;
+      animation:shimmer 5s ease-in-out infinite;
+    }
+  }
+  @keyframes shimmer{
+    0%   { background-position:135% 0, 0 0; }
+    55%  { background-position:-35% 0, 0 0; }
+    100% { background-position:-35% 0, 0 0; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .shimmer{ animation:none; }
+  }
+
+  .coming{
+    font-weight:700;
+    font-size:clamp(.78rem,2.8vw,.92rem);
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--green);
+  }
+
+  .lede{
+    max-width:46ch;
+    font-size:clamp(.95rem,2.7vw,1.05rem);
+    line-height:1.6;
+    color:var(--ink);
+  }
+
+  .cta{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    width:100%;
+    max-width:340px;
+    margin-top:4px;
+  }
+
+  .btn{
+    font-family:inherit;
+    font-weight:600;
+    font-size:clamp(.78rem,2.6vw,.86rem);
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    padding:15px 26px;
+    border-radius:999px;
+    border:1.6px solid var(--green);
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
+    transition:transform .15s ease, background-color .2s ease, color .2s ease, box-shadow .2s ease;
+    display:inline-block;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{
+    background:var(--green);
+    color:var(--cream);
+    box-shadow:0 8px 22px rgba(14,58,41,.22);
+  }
+  .btn-primary:hover{ background:var(--green-soft); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--green);
+  }
+  .btn-ghost:hover{ background:rgba(14,58,41,.07); }
+
+  .batch{
+    margin-top:6px;
+    font-size:clamp(.66rem,2.4vw,.74rem);
+    font-weight:600;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  .social{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    margin-top:4px;
+  }
+  .social-icons{ display:flex; gap:16px; }
+  .social-icons a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1.5px solid rgba(14,58,41,.35);
+    color:var(--green);
+    transition:background-color .2s ease, color .2s ease, transform .15s ease, border-color .2s ease;
+  }
+  .social-icons a:hover{
+    background:var(--green);
+    border-color:var(--green);
+    color:var(--cream);
+    transform:translateY(-2px);
+  }
+  .social-icons svg{ width:20px; height:20px; }
+  .social-note{
+    font-size:clamp(.72rem,2.4vw,.8rem);
+    color:var(--ink);
+    opacity:.85;
+  }
+  .social-note b{ color:var(--green); font-weight:600; }
+
+  /* ---------- Desktop / landscape: horizontal photo, content on the left ---------- */
+  @media (min-width:900px) and (min-aspect-ratio:1/1){
+    .page{
+      background-image:url("assets/img/bg-desktop.jpg");
+      justify-content:center;
+      align-items:flex-start;
+      padding-left:clamp(48px,7vw,96px);
+    }
+    .page::before{ display:none; }
+    .content{
+      margin:0;
+      max-width:min(46%,560px);
+      align-items:flex-start;
+      text-align:left;
+      gap:clamp(16px,1.8vw,22px);
+    }
+    .logo{ width:clamp(170px,15vw,220px); }
+    .headline{ font-size:clamp(3rem,5.2vw,4.4rem); }
+    .lede{ font-size:clamp(1rem,1.4vw,1.12rem); }
+    .cta{ flex-direction:row; max-width:none; flex-wrap:wrap; }
+    .btn{ width:auto; }
+    .social{ align-items:flex-start; }
+  }
+
+  /* ---------- Waitlist modal ---------- */
+  .modal[hidden]{ display:none; }
+  .modal{
+    position:fixed;
+    inset:0;
+    z-index:50;
     display:flex;
     align-items:center;
     justify-content:center;
-    overflow:hidden;
+    padding:24px;
   }
-
-  /* Frame keeps the exact image aspect ratio while fitting the viewport */
-  .frame{
-    position:relative;
-    line-height:0;
-  }
-  .frame img{
-    display:block;
-    width:100%;
-    height:100%;
-    object-fit:contain;
-  }
-
-  .frame--desktop{
-    aspect-ratio:1672 / 941;
-    width:min(100vw, calc(100vh * 1672 / 941));
-    height:min(100vh, calc(100vw * 941 / 1672));
-  }
-  .frame--mobile{
-    aspect-ratio:941 / 1672;
-    width:min(100vw, calc(100vh * 941 / 1672));
-    height:min(100vh, calc(100vw * 1672 / 941));
-  }
-
-  /* Clickable hotspots over the buttons in the artwork */
-  .hotspot{
+  .modal-overlay{
     position:absolute;
-    display:block;
+    inset:0;
+    background:rgba(8,30,20,.92);
+    -webkit-backdrop-filter:blur(4px);
+    backdrop-filter:blur(4px);
+  }
+  .modal-card{
+    position:relative;
+    width:100%;
+    max-width:420px;
+    background:var(--cream);
+    border-radius:18px;
+    padding:clamp(28px,5vw,40px);
+    box-shadow:0 30px 70px rgba(0,0,0,.45);
+    text-align:center;
+    animation:pop .25s ease;
+  }
+  @keyframes pop{ from{ transform:translateY(12px) scale(.97); opacity:0; } to{ transform:none; opacity:1; } }
+  .modal-close{
+    position:absolute;
+    top:14px;
+    right:16px;
+    background:none;
+    border:none;
+    font-size:1.2rem;
+    line-height:1;
+    color:var(--green);
     cursor:pointer;
+    opacity:.7;
   }
-
-  .frame--mobile{ display:none; }
-
-  @media (max-aspect-ratio: 1/1){
-    .frame--desktop{ display:none; }
-    .frame--mobile{ display:block; }
+  .modal-close:hover{ opacity:1; }
+  .modal-card h2{
+    font-family:"Playfair Display",Georgia,serif;
+    font-weight:700;
+    font-size:clamp(1.6rem,5vw,2rem);
+    color:var(--green);
+    margin-bottom:8px;
   }
+  .modal-card p{
+    font-size:.92rem;
+    line-height:1.55;
+    color:var(--ink);
+    margin-bottom:18px;
+  }
+  #waitlist-form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  #waitlist-form input{
+    font-family:inherit;
+    font-size:1rem;
+    padding:14px 16px;
+    border-radius:10px;
+    border:1.5px solid rgba(14,58,41,.3);
+    background:#fff;
+    color:var(--ink);
+  }
+  #waitlist-form input:focus{
+    outline:none;
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(14,58,41,.12);
+  }
+  #waitlist-form .btn{ width:100%; }
+  .form-msg{
+    min-height:1.2em;
+    margin-top:6px;
+    margin-bottom:0;
+    font-size:.85rem;
+    font-weight:600;
+  }
+  .form-msg--ok{ color:var(--green); }
+  .form-msg--err{ color:#9b3b2f; }
 </style>
 </head>
 <body>
 
-  <!-- Desktop / landscape artwork -->
-  <div class="frame frame--desktop">
-    <img src="assets/img/AYO_PL_Horizontal_01.jpg" alt="AYÓ — Filipino-inspired tea. A hello in every sip. Coming soon.">
-    <a class="hotspot" href="#waitlist" aria-label="Join the waitlist"
-       style="left:5.4%; top:74.0%; width:18.5%; height:6.6%;"></a>
-    <a class="hotspot" href="https://instagram.com/drinkayo" target="_blank" rel="noopener" aria-label="Follow @drinkAYO"
-       style="left:25.4%; top:74.0%; width:16.6%; height:6.6%;"></a>
+  <div class="page">
+    <main class="content">
+      <img class="logo" src="assets/img/logo.png" alt="AYÓ">
+      <p class="eyebrow">Filipino-Inspired Tea</p>
+      <h1 class="headline"><span class="shimmer">A hello in<br>every sip.</span></h1>
+      <p class="coming">Coming Soon.</p>
+      <p class="lede">Filipino-inspired tea for moments worth savoring. Premium ready-to-drink tea crafted with no artificial ingredients, no preservatives, and naturally sweetened.</p>
+
+      <div class="cta">
+        <button class="btn btn-primary" id="open-waitlist" type="button">Join the Waitlist</button>
+        <a class="btn btn-ghost" href="https://instagram.com/drinkayo" target="_blank" rel="noopener">Follow @drinkAYO</a>
+      </div>
+
+      <p class="batch">Batch 001 • Summer 2026</p>
+
+      <div class="social">
+        <div class="social-icons">
+          <a href="https://instagram.com/drinkayo" target="_blank" rel="noopener" aria-label="AYÓ on Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2.5" y="2.5" width="19" height="19" rx="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="4.3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="17.4" cy="6.6" r="1.25" fill="currentColor"/>
+            </svg>
+          </a>
+          <a href="https://www.tiktok.com/@drinkayo" target="_blank" rel="noopener" aria-label="AYÓ on TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+              <path d="M16.6 3c.28 2.05 1.43 3.28 3.4 3.41v2.37c-1.14.11-2.14-.26-3.31-.96v6.11c0 3.07-2.23 5.66-5.34 5.66-3.01 0-5.45-2.44-5.45-5.45 0-3.16 2.66-5.62 5.81-5.2v2.49c-.36-.11-.74-.17-1.13-.17-1.58 0-2.86 1.28-2.86 2.86s1.28 2.86 2.86 2.86 2.86-1.28 2.86-2.86V3h3.16z"/>
+            </svg>
+          </a>
+        </div>
+        <p class="social-note">Follow the launch on Instagram and TikTok: <b>@drinkAYO</b></p>
+      </div>
+    </main>
   </div>
 
-  <!-- Mobile / portrait artwork -->
-  <div class="frame frame--mobile">
-    <img src="assets/img/AYO_PL_Vertical.jpg" alt="AYÓ — Filipino-inspired tea. A hello in every sip. Coming soon.">
-    <a class="hotspot" href="#waitlist" aria-label="Join the waitlist"
-       style="left:13.8%; top:48.2%; width:36.8%; height:4.0%;"></a>
-    <a class="hotspot" href="https://instagram.com/drinkayo" target="_blank" rel="noopener" aria-label="Follow @drinkAYO"
-       style="left:13.8%; top:53.9%; width:36.8%; height:4.0%;"></a>
+  <!-- Waitlist modal -->
+  <div class="modal" id="waitlist-modal" hidden>
+    <div class="modal-overlay" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" data-close type="button" aria-label="Close">&#10005;</button>
+      <h2 id="modal-title">Join the waitlist</h2>
+      <p>Be first to know when AYÓ launches. Batch 001 drops Summer 2026 — we'll send you a hello the moment it's ready.</p>
+      <form id="waitlist-form" novalidate>
+        <input id="waitlist-email" type="email" name="email" required placeholder="you@email.com" autocomplete="email" aria-label="Email address">
+        <button class="btn btn-primary" type="submit">Notify me</button>
+      </form>
+      <p class="form-msg" id="form-msg" role="status" aria-live="polite"></p>
+    </div>
   </div>
 
+  <script src="assets/site.js"></script>
 </body>
 </html>
